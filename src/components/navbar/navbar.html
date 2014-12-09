@@ -1,37 +1,32 @@
-<!--nav class="navbar navbar-static-top navbar-inverse" ng-controller="NavbarCtrl">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="https://github.com/Swiip/generator-gulp-angular">
-      <span class="glyphicon glyphicon-home"></span> Gulp Angular
-    </a>
-  </div>
-
-  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-6">
-    <ul class="nav navbar-nav">
-      <li class="active"><a ng-href="#">Home</a></li>
-      <li><a ng-href="#">About</a></li>
-      <li><a ng-href="#">Contact</a></li>
-    </ul>
-
-    <ul class="nav navbar-nav navbar-right">
-      <li>Current date: {{ date | date:'yyyy-MM-dd' }}</li>
-    </ul>
-  </div>
-</nav-->
-
-<nav ng-controller="NavbarCtrl">
+<nav ng-controller="NavbarCtrl" class="main-header">
   <div class="ui inverted menu">
-  <a ui-sref-active="active" ui-sref="home" class="active item">
+  <!--a ui-sref-active="active" ui-sref="home" class="active item">
     <i class="grid layout icon"></i> Home
+  </a-->
+  <a class="item" ui-sref="create" ng-show="signedIn()">
+    <i class="share alternate icon"></i> Create
   </a>
-  <a class="item">
+  <a class="item" ui-sref="home">
     <i class="list layout icon"></i> Posts
   </a>
   <a class="item">
     <i class="comments icon"></i> Comments
   </a>
   <div class="right menu">
-    <a class="ui item">
+    <div class="text item" ng-show="signedIn()">
+      <a ng-href="#/users/{{user.profile.uid}}">
+        <img class="ui avatar image"  ng-src="http://www.gravatar.com/avatar/{{ user.profile.md5_hash }}">
+        <span class="ui green label">Welcome, {{user.profile.username}}!</span>
+      </a>
+    </div>
+    <a class="ui item" ng-show="signedIn()" ng-href="#" ng-click="logout()">
       Logout
+    </a>
+    <a class="ui item" ng-hide="signedIn()" ng-href="#/register">
+      Register
+    </a>
+    <a class="ui item" ng-hide="signedIn()" ng-href="#/signin">
+      Sign in
     </a>
   </div>
 </div>

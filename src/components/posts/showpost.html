@@ -1,5 +1,25 @@
-<div class="ui segment">
-	<a ng-href="{{ post.url }}" target="_blank">{{ post.title }}</a>
+<div class="ui card">
+	<div class="content">
+				<h3 class="header">{{post.title}}</h3>
+				
+				<div class="meta">
+					<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
+				</div>
+				<div class="description">
+					<p>
+						{{post.url | hostnameFromUrl}}
+					</p>
+					<p>
+						{{post.tags}}
+					</p>
+					
+				</div>
+			</div>
+			<div class="extra content">
+				<a class="right floated" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">
+					<i class="trash icon"></i>Remove Post
+				</a>
+			</div>
 </div>
 
 <a ui-sref="home">Back to Posts</a>

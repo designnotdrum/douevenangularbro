@@ -1,7 +1,7 @@
-'use strict';
-
 /* global app:true */
 /* exported app */
+
+'use strict';
 
 var app = angular
 .module('angNews', [
@@ -13,7 +13,6 @@ var app = angular
 	'ui.router',
 	'firebase'
 ])
-.constant('FIREBASE_URL', 'https://sizzling-torch-4036.firebaseio.com/')
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       // .state('home', {
@@ -29,6 +28,14 @@ var app = angular
       		pageTitle: 'Home'
       	}
       })
+      .state('create', {
+      	url: '/create',
+      	templateUrl: 'components/form/form.html',
+      	controller: 'NavbarCtrl',
+      	data: {
+      		pageTitle: 'Create post'
+      	}
+      })
       .state('posts', {
       	url: '/posts/:postId',
       	templateUrl: 'components/posts/showpost.html',
@@ -36,6 +43,32 @@ var app = angular
       	data: {
       		pageTitle: ''
       	}
+      })
+      .state('register', {
+      	url: '/register',
+      	templateUrl: 'components/login/register.html',
+      	controller: 'AuthCtrl',
+      	resolve: {
+      		user: function (Auth) {
+      			return Auth.resolveUser();
+      		}
+      	},
+            data: {
+                  pageTitle: 'Register'
+            }
+      })
+      .state('signin', {
+      	url: '/signin',
+      	templateUrl: 'components/login/signin.html',
+      	controller: 'AuthCtrl',
+      	resolve: {
+      		user: function (Auth) {
+      			return Auth.resolveUser();
+      		}
+      	},
+            data: {
+                  pageTitle: 'Sign in'
+            }
       });
 
     $urlRouterProvider.otherwise('/');

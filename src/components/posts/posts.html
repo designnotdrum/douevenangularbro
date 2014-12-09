@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="wrapper">
 
 	<!--div class="row">
 	
@@ -24,43 +24,8 @@
 	
 		
 	</div-->
-
-	<form ng-submit="submitPost()" class="ui segment form">
-		<h4 class="ui dividing header">Share something!</h4>
-		<!--div class="two fields"-->
-			<div class="field">
-				<label for="title">Post Title</label>
-				<div class="ui mini input">
-					<input id="title" type="text" ng-model="post.title" placeholder="Input Title">
-				</div>
-			</div>
-			<div class="field">
-				<label for="url">Post URL</label>
-				<div class="ui mini input">
-				  <input id="url" type="text" placeholder="mysite.com" ng-model="post.url">
-				</div>
-			</div>
-		<!--/div>
-		<div class="two fields"-->
-			<div class="field">
-				<label for="tags">Tags</label>
-				<div class="ui mini right icon input">
-				  <i class="tags icon"></i>
-				  <input id="tags" type="text" placeholder="Enter categories" ng-model="post.tags">
-				</div>
-			</div>
-			<!--div class="field">
-				<label for="fileUpload">Upload file</label>
-				<div class="ui labeled left icon input">
-					<i class="file icon"></i>
-					<input type="file" ng-model="post.image">
-				</div>
-			</div>
-		<!--/div-->
-		<input type="submit" class="ui submit blue right floated button" value="Submit"/>
-	</form>
 	
-	<div class="ui five cards">
+	<div class="ui cards">
 		<div ng-repeat="(postId, post) in posts" class="card">
 			<!--div class="image">
 				<img src="{{post.image}}" alt="{{post.title}}">
@@ -68,22 +33,26 @@
 			<div class="content">
 				<a class="header" ui-sref="posts({postId: post.$id})">{{post.title}}</a>
 				<div class="meta">
-					{{post.url}}
+					<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
 				</div>
 				<div class="description">
 					<p>
+						{{post.url | hostnameFromUrl}}
+					</p>
+					<p>
 						{{post.tags}}
 					</p>
+					
 				</div>
-				<div class="extra content">
-					<a class="right floated" ng-click="deletePost(post)">
-						<i class="trash icon"></i>Remove Post
-					</a>
-					<a ui-sref="posts({postId: post.$id})">
-						<i class="comments icon"></i>
-						Comments
-					</a>
-				</div>
+			</div>
+			<div class="extra content">
+				<a class="right floated" ng-click="deletePost(post)" ng-show="signedIn() && user.uid === post.creatorUID">
+					<i class="trash icon"></i>Remove Post
+				</a>
+				<a ui-sref="posts({postId: post.$id})">
+					<i class="comments icon"></i>
+					Comments
+				</a>
 			</div>
 		</div>
 	</div>

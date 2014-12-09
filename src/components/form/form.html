@@ -1,0 +1,34 @@
+<form ng-submit="submitPost()" class="ui segment form">
+	<h4 class="ui dividing header">Share something!</h4>
+	<!--div class="two fields"-->
+		<div class="field">
+			<label for="title">Post Title</label>
+			<div class="ui mini input">
+				<input id="title" type="text" ng-model="post.title" placeholder="Input Title">
+			</div>
+		</div>
+		<div class="field">
+			<label for="url">Post URL</label>
+			<div class="ui mini input">
+			  <input id="url" type="text" placeholder="mysite.com" ng-model="post.url">
+			</div>
+		</div>
+	<!--/div>
+	<div class="two fields"-->
+		<div class="field">
+			<label for="tags">Tags</label>
+			<div class="ui mini right icon input">
+			  <i class="tags icon"></i>
+			  <input id="tags" type="text" placeholder="Enter categories" ng-model="post.tags">
+			</div>
+		</div>
+		<!--div class="field">
+			<label for="fileUpload">Upload file</label>
+			<div class="ui labeled left icon input">
+				<i class="file icon"></i>
+				<input type="file" ng-model="post.image">
+			</div>
+		</div>
+	<!--/div-->
+	<input type="submit" class="ui submit blue right floated button" value="Submit"/>
+</form>

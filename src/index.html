@@ -29,7 +29,10 @@
     <![endif]-->
 
     <div ng-include="'../components/navbar/navbar.html'"></div>
-    <div ui-view></div>
+    <div class="container-fluid">
+      <div ui-view></div>
+    </div>
+    
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
@@ -52,19 +55,25 @@
     <script src="../bower_components/angular-resource/angular-resource.js"></script>
     <script src="../bower_components/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="../bower_components/firebase/firebase.js"></script>
-    <script src="../bower_components/angularfire/dist/angularfire.js"></script>
+    <script src="../bower_components/mockfirebase/dist/mockfirebase.js"></script>
+    <script src="../bower_components/angularfire/dist/angularfire.min.js"></script>
     <!-- endbower -->
+    <script src="../bower_components/firebase-simple-login/firebase-simple-login.js"></script>
     <script src="../bower_components/semantic-ui/dist/semantic.js"></script>
     <!-- endbuild -->
 
     <!-- build:js({.tmp,src}) scripts/app.js -->
     <script src="app/index.js"></script>
+    <script src="app/firebase-config.js"></script>
     <script src="app/main/main.controller.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
     <script src="components/posts/posts.controller.js"></script>
     <script src="components/posts/posts.service.js"></script>
     <script src="components/posts/postview.controller.js"></script>
     <script src="directives/pageTitle.directive.js"></script>
+    <script src="filters/url.js"></script>
+    <script src="components/login/auth.controller.js"></script>
+    <script src="components/login/auth.service.js"></script>
 
     <!-- inject:partials -->
     <!-- angular templates will be automaticaly converted in js and inserted here -->
