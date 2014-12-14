@@ -1,0 +1,33 @@
+<div class="ui grid">
+  <div class="ui four wide column">
+    <div class="ui card">
+      <div class="image">
+        <img ng-src="http://www.gravatar.com/avatar/{{ profile.md5_hash }}">
+      </div>
+      <div class="content">
+        <a class="header">{{ profile.username }}</a>
+        <div class="meta">
+          <span class="date">Joined in 2014</span>
+        </div>
+        <div class="description">
+          {{ profile.username }} is a library scientist living in New York City. She likes to spend her time reading, running, and writing.
+        </div>
+      </div>
+      <div class="extra content"></div>
+    </div>
+  </div>
+  <div class="ui twelve wide column">
+    <div ng-repeat="(key,post) in posts">
+      <h5 class="ui top attached header">
+        <a ui-sref="posts({postId: post.$id})">{{ post.title }}</a>
+      </h5>
+      <div class="ui attached segment">
+        <p>
+          {{post.url | hostnameFromUrl}}
+          <br/>
+          {{post.tags}}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

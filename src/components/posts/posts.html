@@ -1,29 +1,4 @@
 <div class="wrapper">
-
-	<!--div class="row">
-	
-		<form ng-submit="submitPost()">
-			<div class="col-lg-12">
-				<div class="input-group input-group-lg">
-					<input type="text" ng-model="post.title" class="form-control" placeholder="Title">
-				</div>
-			</div>
-			<div class="col-lg-12">
-				<div class="ui action input">
-					<input type="text" ng-model="post.url">
-					<span class="input-group-btn">
-						<input class="btn btn-primary" type="submit" value="Add Post">
-					</span>
-				</div>	
-			</div>
-			
-		</form>
-
-
-
-	
-		
-	</div-->
 	
 	<div class="ui cards">
 		<div ng-repeat="(postId, post) in posts" class="card">
@@ -33,7 +8,7 @@
 			<div class="content">
 				<a class="header" ui-sref="posts({postId: post.$id})">{{post.title}}</a>
 				<div class="meta">
-					<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
+					<span>submitted by <a ui-sref="users({ userId: post.creatorUID })">{{ post.creator }}</a></span>
 				</div>
 				<div class="description">
 					<p>
@@ -46,7 +21,7 @@
 				</div>
 			</div>
 			<div class="extra content">
-				<a class="right floated" ng-click="deletePost(post)" ng-show="signedIn() && user.uid === post.creatorUID">
+				<a class="right floated" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">
 					<i class="trash icon"></i>Remove Post
 				</a>
 				<a ui-sref="posts({postId: post.$id})">

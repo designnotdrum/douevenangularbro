@@ -69,6 +69,11 @@ var app = angular
             data: {
                   pageTitle: 'Sign in'
             }
+      })
+      .state('users', {
+            url: '/users/:userId', 
+            templateUrl: 'components/users/profile.html',
+            controller: 'ProfileCtrl'
       });
 
     $urlRouterProvider.otherwise('/');

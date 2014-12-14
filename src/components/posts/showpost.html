@@ -1,25 +1,64 @@
 <div class="ui card">
 	<div class="content">
-				<h3 class="header">{{post.title}}</h3>
-				
-				<div class="meta">
-					<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
-				</div>
-				<div class="description">
-					<p>
-						{{post.url | hostnameFromUrl}}
-					</p>
-					<p>
-						{{post.tags}}
-					</p>
-					
-				</div>
-			</div>
-			<div class="extra content">
-				<a class="right floated" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">
-					<i class="trash icon"></i>Remove Post
-				</a>
-			</div>
+		<h3 class="header">{{post.title}}</h3>
+
+		<div class="meta">
+			<span>submitted by <a ng-href="#/users/{{ post.creatorUID }}">{{ post.creator }}</a></span>
+		</div>
+		<div class="description">
+			<p>
+				{{post.url | hostnameFromUrl}}
+			</p>
+			<p>
+				{{post.tags}}
+			</p>
+			
+		</div>
+	</div>
+	<div class="extra content">
+		<a ui-sref="home">
+			<i class="angle double left icon"></i> Back to Posts
+		</a>
+		<a class="right floated" ng-click="deletePost(post)" ng-show="user.uid === post.creatorUID">
+			<i class="trash icon"></i>Remove Post
+		</a>
+	</div>
 </div>
 
-<a ui-sref="home">Back to Posts</a>
+<div class="ui segment">
+	<div class="ui threaded comments">
+		<h3 class="ui dividing header">Comments</h3>
+		<div ng-repeat="comment in comments" class="comment">
+			<a href="" class="avatar">
+				<img class="ui avatar image" ng-src="http://www.gravatar.com/avatar/{{ comment.gravatar }}" >
+			</a>
+			<div class="content">
+				<a ng-href="#/users/{{ comment.creatorUID }}" class="author">{{ comment.creator }}</a>
+				<div class="metadata"><span class="date"></span></div>
+				<div class="text">
+					{{ comment.text }}
+				</div>
+				<div class="actions">
+					<a class="reply"></a>
+					<a class="delete" ng-show="signedIn() && comment.creatorUID === user.uid" ng-click="deleteComment(comment)">Delete</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="comment-form">
+		<div ng-hide="signedIn()">
+			<p><a ui-sref="#/login">Sign in</a> to post a comment.</p>
+		</div>
+		<form ng-show="signedIn()" class="ui reply form">
+			<div class="field">
+				<textarea ng-model="commentText" placeholder="Post a Comment"></textarea>
+			</div>
+			<div type="text" submit="" ng-click="addComment()" class="ui blue labeled right floated submit icon button">
+				<i class="icon edit"></i>
+				Add Reply
+			</div>
+		</form>
+	</div>
+</div>
+
