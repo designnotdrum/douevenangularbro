@@ -7,5 +7,5 @@ app.filter('hostnameFromUrl', function () {
 		url.href = str;
 
 		return url.hostname;
-	}
+	};
 });

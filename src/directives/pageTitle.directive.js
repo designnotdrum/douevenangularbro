@@ -14,6 +14,6 @@ app.directive('title', ['$rootScope', '$timeout',
 
 				$rootScope.$on('$stateChangeSuccess', listener);
 			}
-		}
+		};
 	}
 ]);

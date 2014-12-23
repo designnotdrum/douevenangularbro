@@ -27,14 +27,14 @@ gulp.task('styles', ['wiredep'],  function () {
 });
 
 gulp.task('scripts', function () {
-  return gulp.src('src/{app,components}/**/*.js')
+  return gulp.src('src/{app,components,directives,filters}/**/*.js')
     .pipe($.jshint())
     .pipe($.jshint.reporter('jshint-stylish'))
     .pipe($.size());
 });
 
 gulp.task('partials', function () {
-  return gulp.src('src/{app,components}/**/*.html')
+  return gulp.src('src/{app,components,directives,filters}/**/*.html')
     .pipe($.minifyHtml({
       empty: true,
       spare: true,
@@ -54,7 +54,7 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
   var assets;
 
   return gulp.src('src/*.html')
-    .pipe($.inject(gulp.src('.tmp/{app,components}/**/*.js'), {
+    .pipe($.inject(gulp.src('.tmp/{app,components,directives,filters}/**/*.js'), {
       read: false,
       starttag: '<!-- inject:partials -->',
       addRootSlash: false,
@@ -67,7 +67,7 @@ gulp.task('html', ['styles', 'scripts', 'partials'], function () {
     .pipe($.uglify({preserveComments: $.uglifySaveLicense}))
     .pipe(jsFilter.restore())
     .pipe(cssFilter)
-    .pipe($.replace('bower_components/bootstrap/fonts','fonts'))
+    .pipe($.replace('bower_components/semantic-ui/dist/themes/basic/assets/fonts','fonts'))
     .pipe($.csso())
     .pipe(cssFilter.restore())
     .pipe(assets.restore())

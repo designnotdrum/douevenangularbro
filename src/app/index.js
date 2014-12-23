@@ -74,6 +74,10 @@ var app = angular
             url: '/users/:userId', 
             templateUrl: 'components/users/profile.html',
             controller: 'ProfileCtrl'
+      })
+      .state('navbar', {
+            templateUrl: 'components/navbar/navbar.html',
+            controller: 'NavbarCtrl'
       });
 
     $urlRouterProvider.otherwise('/');
